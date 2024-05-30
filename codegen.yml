@@ -1,0 +1,29 @@
+overwrite: true
+schema: 'src/schema.graphql'
+documents: ['src/graphql/defs/**/*.gql']
+generates:
+  src/graphql/types.generated.ts:
+    plugins:
+      - 'typescript'
+      - add:
+          content:
+            - '/* eslint-disable */'
+  src/graphql/:
+    preset: 'near-operation-file'
+    presetConfig:
+      extension: '.generated.tsx'
+      baseTypesPath: 'types.generated.ts'
+      folder: '__generated__'
+    plugins:
+      - add:
+          content:
+            - '/* eslint-disable */'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      withHooks: true
+      scalars:
+        DateTime: string
+  graphql.schema.json:
+    plugins:
+      - 'introspection'

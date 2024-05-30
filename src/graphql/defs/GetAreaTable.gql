@@ -1,0 +1,34 @@
+fragment Area on ViewArea {
+  id
+  code
+  name
+  description
+  isEmpty
+  storageLocation
+  storageLocationId
+  status
+  targetTemperature
+  entryPoint
+  exitPoint
+  warehouseId
+}
+
+query AreaTable(
+  $paging: OffsetPaging
+  $filter: ViewAreaFilter
+  $sorting: [ViewAreaSort!]
+  $includePageInfo: Boolean = true
+  $includeNodes: Boolean = true
+  $includeTotalCount: Boolean = false
+) {
+  query: viewAreas(sorting: $sorting, paging: $paging, filter: $filter) {
+    pageInfo @include(if: $includePageInfo) {
+      hasNextPage
+      hasPreviousPage
+    }
+    nodes @include(if: $includeNodes) {
+      ...Area
+    }
+    totalCount @include(if: $includeTotalCount)
+  }
+}
