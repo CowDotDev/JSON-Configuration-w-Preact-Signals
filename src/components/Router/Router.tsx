@@ -1,5 +1,5 @@
 import { LogoBadge } from '@/components/LogoBadge';
-import { Box } from '@mui/material';
+import { Box, Link, Typography } from '@mui/material';
 import { Suspense } from 'react';
 import {
   Outlet,
@@ -18,36 +18,31 @@ const BaseRouteLayout = () => {
         }}
       />
 
-      <Box
-        position="relative"
-        display="flex"
-        minHeight="100vh"
-        minWidth="100vw"
-        gap={4}
-        padding={4}
-      >
-        <Box display="flex" felxGrow={0} flexDirection="column" alignItems="center" gap={2}>
-          <Box>
-            <LogoBadge />
+      <Box position="relative" minHeight="100vh" minWidth="100vw">
+        <Box display="flex" gap={4} padding={4}>
+          <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
+            <Box>
+              <LogoBadge />
+            </Box>
+            <Typography>
+              <Link href="https://www.linkedin.com/in/cowdotdev/" target="_blank">
+                @LinkedIn
+              </Link>
+            </Typography>
+            <Typography>
+              <Link href="https://github.com/CowDotDev" target="_blank">
+                @GitHub
+              </Link>
+            </Typography>
+            <Typography>
+              <Link href="mailto:zach@zachcase.com" target="_blank">
+                zach@zachcase.com
+              </Link>
+            </Typography>
           </Box>
-          <Typography fontWeight="bo">
-            <Link href="https://www.linkedin.com/in/cowdotdev/" target="_blank">
-              @LinkedIn
-            </Link>
-          </Typography>
-          <Typography fontWeight="bo">
-            <Link href="https://github.com/CowDotDev" target="_blank">
-              @GitHub
-            </Link>
-          </Typography>
-          <Typography fontWeight="bo">
-            <Link href="mailto:zach@zachcase.com" target="_blank">
-              zach@zachcase.com
-            </Link>
-          </Typography>
-        </Box>
-        <Box>
-          <Outlet />
+          <Box>
+            <Outlet />
+          </Box>
         </Box>
       </Box>
     </Suspense>
